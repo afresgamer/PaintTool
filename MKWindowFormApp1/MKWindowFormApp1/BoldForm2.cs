@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MKWindowFormApp1
 {
-    public partial class BoldForm : Form
+    public partial class BoldForm2 : Form
     {
-        #region "コンストラクタ"
-
-        public BoldForm()
+        public BoldForm2()
         {
             InitializeComponent();
         }
-
-        #endregion
 
         #region "クリックイベントハンドラ"
 
@@ -23,7 +26,7 @@ namespace MKWindowFormApp1
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
-            if(TBBold.Text != null && int.Parse(TBBold.Text) > 0)
+            if (TBBold.Text != null && int.Parse(TBBold.Text) > 0)
             {
                 Properties.Settings.Default.PEN_BOLD = int.Parse(TBBold.Text);
             }

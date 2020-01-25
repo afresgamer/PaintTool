@@ -46,33 +46,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoldForm.cs">
+    <Compile Include="BoldForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BoldForm.Designer.cs">
-      <DependentUpon>BoldForm.cs</DependentUpon>
+    <Compile Include="BoldForm2.Designer.cs">
+      <DependentUpon>BoldForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="IShapeMode.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="MainForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="MainForm2.Designer.cs">
+      <DependentUpon>MainForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ShapeModeDialog.cs">
+    <Compile Include="ShapeModeDialog2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShapeModeDialog.Designer.cs">
-      <DependentUpon>ShapeModeDialog.cs</DependentUpon>
+    <Compile Include="ShapeModeDialog2.Designer.cs">
+      <DependentUpon>ShapeModeDialog2.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BoldForm.resx">
-      <DependentUpon>BoldForm.cs</DependentUpon>
+    <EmbeddedResource Include="BoldForm2.resx">
+      <DependentUpon>BoldForm2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm2.resx">
+      <DependentUpon>MainForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -83,8 +83,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ShapeModeDialog.resx">
-      <DependentUpon>ShapeModeDialog.cs</DependentUpon>
+    <EmbeddedResource Include="ShapeModeDialog2.resx">
+      <DependentUpon>ShapeModeDialog2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
@@ -102,6 +102,9 @@
     <None Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

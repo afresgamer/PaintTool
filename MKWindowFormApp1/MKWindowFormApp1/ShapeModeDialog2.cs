@@ -10,16 +10,12 @@ using System.Windows.Forms;
 
 namespace MKWindowFormApp1
 {
-    public partial class ShapeModeDialog : Form
+    public partial class ShapeModeDialog2 : Form
     {
-        #region "コンストラクタ"
-
-        public ShapeModeDialog()
+        public ShapeModeDialog2()
         {
             InitializeComponent();
         }
-
-        #endregion
 
         #region "クリックイベントハンドラ"
 

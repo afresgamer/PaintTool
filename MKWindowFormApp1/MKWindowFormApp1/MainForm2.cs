@@ -1,16 +1,25 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Collections;
+using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 using System.Drawing.Printing;
-using System.IO;
 
 namespace MKWindowFormApp1
 {
-    public partial class MainForm : Form,IShapeMode
+    public partial class MainForm2 : Form,IShapeMode
     {
+        #region コンストラクタ
+        public MainForm2()
+        {
+            InitializeComponent();
+        }
+        #endregion
+
         #region "private メンバ変数"
-        
+
         /// <summary>
         /// グラフィック変数
         /// </summary>
@@ -25,28 +34,19 @@ namespace MKWindowFormApp1
         /// <summary>
         /// 図形モード変更フォームオブジェクト
         /// </summary>
-        private ShapeModeDialog m_modeDialog;
+        private ShapeModeDialog2 m_modeDialog;
 
         /// <summary>
         ///　線の太さ変更フォームオブジェクト
         /// </summary>
-        private BoldForm m_boldForm;
+        private BoldForm2 m_boldForm;
 
         #endregion
 
-        #region "public コンストラクタ"
-
-        public MainForm()
-        {
-            InitializeComponent();
-        }
-
-        #endregion
-        
         #region "イベントハンドラ"
 
         #region "クリックイベント"
-        
+
         /// <summary>
         /// 絵の取り消し
         /// </summary>
@@ -67,12 +67,12 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void BtnColorChange_Click(object sender, EventArgs e)
         {
-            if(CdCanvasColor.ShowDialog() == DialogResult.OK)
+            if (CdCanvasColor.ShowDialog() == DialogResult.OK)
             {
                 Properties.Settings.Default.PEN_COLOR = CdCanvasColor.Color;
-            } 
+            }
         }
-        
+
         /// <summary>
         /// 図形モードをクリックしたとき
         /// </summary>
@@ -80,8 +80,8 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void BtnShapeMode_Click(object sender, EventArgs e)
         {
-            m_modeDialog = new ShapeModeDialog();
-            if(m_modeDialog.ShowDialog() == DialogResult.OK)
+            m_modeDialog = new ShapeModeDialog2();
+            if (m_modeDialog.ShowDialog() == DialogResult.OK)
             {
                 m_shapeMode = (ShapeMode)Properties.Settings.Default.SHAPE_MODE_INDEX;
             }
@@ -95,7 +95,7 @@ namespace MKWindowFormApp1
             switch (m_shapeMode)
             {
                 case ShapeMode.Circle:
-                    TsmiCircleMode.Checked = true;
+                    TsmiCircle.Checked = true;
                     break;
                 case ShapeMode.Square:
                     TsmiSquare.Checked = true;
@@ -113,7 +113,7 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void BtnThickness_Click(object sender, EventArgs e)
         {
-            m_boldForm = new BoldForm();
+            m_boldForm = new BoldForm2();
             m_boldForm.ShowDialog();
         }
 
@@ -134,7 +134,7 @@ namespace MKWindowFormApp1
                 Title = "保存先のファイルを選択してください",
                 RestoreDirectory = true
             };
-            
+
             if (SfdCanvasSave.ShowDialog() == DialogResult.OK)
             {
                 string extension = Path.GetExtension(SfdCanvasSave.FileName);
@@ -270,7 +270,7 @@ namespace MKWindowFormApp1
             {
                 //OKがクリックされた時は印刷する
                 ppd.Document = pd;
-                if( ppd.ShowDialog() == DialogResult.OK)
+                if (ppd.ShowDialog() == DialogResult.OK)
                 {
                     pd.Print(); //印刷
                 }
@@ -317,7 +317,7 @@ namespace MKWindowFormApp1
                 Properties.Settings.Default.FILE_PATH = SfdCanvasSave.FileName;
             }
         }
-        
+
         /// <summary>
         /// 色の変更(メニュー)
         /// </summary>
@@ -338,7 +338,7 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void TsmiThickness_Click(object sender, EventArgs e)
         {
-            m_boldForm = new BoldForm();
+            m_boldForm = new BoldForm2();
             m_boldForm.ShowDialog();
         }
 
@@ -349,8 +349,8 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void TsmiStraightLine_Click(object sender, EventArgs e)
         {
-            m_shapeMode = (ShapeMode)1;
-            for(int i =0; i < TsmiShapeMode.DropDownItems.Count; i++)
+            m_shapeMode = ShapeMode.StraightLine;
+            for (int i = 0; i < TsmiShapeMode.DropDownItems.Count; i++)
             {
                 ToolStripMenuItem item = TsmiShapeMode.DropDownItems[i] as ToolStripMenuItem;
                 item.Checked = false;
@@ -365,7 +365,7 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void TsmiSquare_Click(object sender, EventArgs e)
         {
-            m_shapeMode = (ShapeMode)2;
+            m_shapeMode = ShapeMode.Square;
             for (int i = 0; i < TsmiShapeMode.DropDownItems.Count; i++)
             {
                 ToolStripMenuItem item = TsmiShapeMode.DropDownItems[i] as ToolStripMenuItem;
@@ -381,13 +381,13 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void TsmiCircleMode_Click(object sender, EventArgs e)
         {
-            m_shapeMode = (ShapeMode)0;
+            m_shapeMode = ShapeMode.Circle;
             for (int i = 0; i < TsmiShapeMode.DropDownItems.Count; i++)
             {
                 ToolStripMenuItem item = TsmiShapeMode.DropDownItems[i] as ToolStripMenuItem;
                 item.Checked = false;
             }
-            TsmiCircleMode.Checked = true;
+            TsmiCircle.Checked = true;
         }
 
         #endregion
@@ -415,15 +415,15 @@ namespace MKWindowFormApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ModeDialog_FormClosing(object sender,FormClosingEventArgs e)
+        private void ModeDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ShapeModeDialog modeDialog = (ShapeModeDialog)sender;
+            ShapeModeDialog2 modeDialog = (ShapeModeDialog2)sender;
             m_modeDialog = modeDialog;
 
             m_shapeMode = (ShapeMode)Properties.Settings.Default.SHAPE_MODE_INDEX;
 
             //初期化
-            for(int i = 0; i < TsmiShapeMode.DropDownItems.Count; i++)
+            for (int i = 0; i < TsmiShapeMode.DropDownItems.Count; i++)
             {
                 ToolStripMenuItem item = TsmiShapeMode.DropDownItems[i] as ToolStripMenuItem;
                 item.Checked = false;
@@ -432,7 +432,7 @@ namespace MKWindowFormApp1
             switch (m_shapeMode)
             {
                 case ShapeMode.Circle:
-                    TsmiCircleMode.Checked = true;
+                    TsmiCircle.Checked = true;
                     break;
                 case ShapeMode.Square:
                     TsmiSquare.Checked = true;
@@ -520,6 +520,17 @@ namespace MKWindowFormApp1
             PbCanvas.MouseMove += new MouseEventHandler(PbCanvas_MouseMove);
         }
 
+        /// <summary>
+        /// 画面リサイズ時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm2_Resize(object sender, EventArgs e)
+        {
+            //描画サイズを再設定 
+            m_image = new Bitmap(PbCanvas.Width, PbCanvas.Height);
+        }
+
         #endregion
 
         #endregion
@@ -530,7 +541,7 @@ namespace MKWindowFormApp1
         #endregion
 
         #region "private メゾット"
-        
+
         /// <summary>
         /// セッター
         /// </summary>
@@ -578,7 +589,7 @@ namespace MKWindowFormApp1
                 }
                 return bmp;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return null;
@@ -602,12 +613,12 @@ namespace MKWindowFormApp1
         /// <param name="end">終わりのポイント</param>
         private void DrawSquare(Point start, Point end)
         {
-            Pen pen = new Pen(Properties.Settings.Default.PEN_COLOR,Properties.Settings.Default.PEN_BOLD);
+            Pen pen = new Pen(Properties.Settings.Default.PEN_COLOR, Properties.Settings.Default.PEN_BOLD);
             m_canvas = Graphics.FromImage(m_image);
-            
+
             // 領域を描画
             m_canvas.DrawRectangle(pen, start.X, start.Y, GetLength(start.X, end.X), GetLength(start.Y, end.Y));
-            
+
             pen.Dispose();
             PbCanvas.Image = m_image;
         }
@@ -636,8 +647,8 @@ namespace MKWindowFormApp1
         {
             Pen pen = new Pen(Properties.Settings.Default.PEN_COLOR, Properties.Settings.Default.PEN_BOLD);
             m_canvas = Graphics.FromImage(m_image);
-            m_canvas.DrawEllipse(pen,Properties.Settings.Default.PREV_POINT.X
-                ,Properties.Settings.Default.PREV_POINT.Y
+            m_canvas.DrawEllipse(pen, Properties.Settings.Default.PREV_POINT.X
+                , Properties.Settings.Default.PREV_POINT.Y
                 , GetLength(Properties.Settings.Default.PREV_POINT.X, args.X)
                 , GetLength(Properties.Settings.Default.PREV_POINT.Y, args.Y));
             Properties.Settings.Default.PREV_POINT = args.Location;
@@ -645,6 +656,5 @@ namespace MKWindowFormApp1
             PbCanvas.Image = m_image;
         }
         #endregion
-        
     }
 }
