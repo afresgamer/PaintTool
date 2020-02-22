@@ -52,7 +52,6 @@
             this.コピーCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.貼り付けToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.削除DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.TsmiDisplay = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmiShapeMode = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmiStraightLine = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,8 +60,6 @@
             this.TsmiChangeColor = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmiClearPic = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmiThickness = new System.Windows.Forms.ToolStripMenuItem();
-            this.TsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.TsmiVersionInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.CdCanvasColor = new System.Windows.Forms.ColorDialog();
             this.SfdCanvasSave = new System.Windows.Forms.SaveFileDialog();
             this.flowLayoutPanel1.SuspendLayout();
@@ -167,11 +164,10 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TsmiFile,
             this.TsmiEdit,
-            this.TsmiDisplay,
-            this.TsmiHelp});
+            this.TsmiDisplay});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1562, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1562, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -244,8 +240,7 @@
             this.切り取りToolStripMenuItem,
             this.コピーCToolStripMenuItem,
             this.貼り付けToolStripMenuItem,
-            this.削除DToolStripMenuItem,
-            this.toolStripSeparator3});
+            this.削除DToolStripMenuItem});
             this.TsmiEdit.Name = "TsmiEdit";
             this.TsmiEdit.Size = new System.Drawing.Size(71, 24);
             this.TsmiEdit.Text = "編集(&E)";
@@ -284,11 +279,6 @@
             this.削除DToolStripMenuItem.Name = "削除DToolStripMenuItem";
             this.削除DToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.削除DToolStripMenuItem.Text = "削除(&L)";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(159, 6);
             // 
             // TsmiDisplay
             // 
@@ -355,20 +345,6 @@
             this.TsmiThickness.Text = "太さ変更(&B)";
             this.TsmiThickness.Click += new System.EventHandler(this.TsmiThickness_Click);
             // 
-            // TsmiHelp
-            // 
-            this.TsmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TsmiVersionInfo});
-            this.TsmiHelp.Name = "TsmiHelp";
-            this.TsmiHelp.Size = new System.Drawing.Size(79, 24);
-            this.TsmiHelp.Text = "ヘルプ(&H)";
-            // 
-            // TsmiVersionInfo
-            // 
-            this.TsmiVersionInfo.Name = "TsmiVersionInfo";
-            this.TsmiVersionInfo.Size = new System.Drawing.Size(196, 26);
-            this.TsmiVersionInfo.Text = "バージョン情報(&A)";
-            // 
             // MainForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -377,8 +353,8 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.PbCanvas);
-            this.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.MinimumSize = new System.Drawing.Size(1580, 1028);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm2";
             this.Text = "お絵かきツール";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -418,7 +394,6 @@
         private System.Windows.Forms.ToolStripMenuItem コピーCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 貼り付けToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 削除DToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem TsmiDisplay;
         private System.Windows.Forms.ToolStripMenuItem TsmiShapeMode;
         private System.Windows.Forms.ToolStripMenuItem TsmiStraightLine;
@@ -427,8 +402,6 @@
         private System.Windows.Forms.ToolStripMenuItem TsmiChangeColor;
         private System.Windows.Forms.ToolStripMenuItem TsmiClearPic;
         private System.Windows.Forms.ToolStripMenuItem TsmiThickness;
-        private System.Windows.Forms.ToolStripMenuItem TsmiHelp;
-        private System.Windows.Forms.ToolStripMenuItem TsmiVersionInfo;
         private System.Windows.Forms.ColorDialog CdCanvasColor;
         private System.Windows.Forms.SaveFileDialog SfdCanvasSave;
     }

@@ -134,5 +134,17 @@ namespace MKWindowFormApp1.Properties {
                 this["APP_NAME"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("入力内容を確認してください。")]
+        public string ERR_INPUT {
+            get {
+                return ((string)(this["ERR_INPUT"]));
+            }
+            set {
+                this["ERR_INPUT"] = value;
+            }
+        }
     }
 }

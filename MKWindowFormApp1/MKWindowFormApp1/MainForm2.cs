@@ -55,9 +55,9 @@ namespace MKWindowFormApp1
         private void BtnClearPic_Click(object sender, EventArgs e)
         {
             //画面クリア
-            m_image = null;
+            m_image = new Bitmap(PbCanvas.Width, PbCanvas.Height); ;
             m_canvas = null;
-            PbCanvas.Image = null;
+            PbCanvas.Image = m_image;
         }
 
         /// <summary>
@@ -217,8 +217,8 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void TsmiNewFile_Click(object sender, EventArgs e)
         {
-            m_image.Dispose();
-            PbCanvas.Image.Dispose();
+            m_image = new Bitmap(PbCanvas.Width, PbCanvas.Height);
+            PbCanvas.Image = m_image;
             this.Text = Properties.Settings.Default.FILE_PATH;
             Properties.Settings.Default.FILE_PATH = null;
         }
@@ -507,6 +507,10 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //リサイズ出来ないようにする
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+
             //ペンの色の初期化
             Properties.Settings.Default.PEN_COLOR = Color.Black;
             m_shapeMode = ShapeMode.StraightLine;
@@ -518,6 +522,14 @@ namespace MKWindowFormApp1
             PbCanvas.MouseDown += new MouseEventHandler(PbCanvas_MouseDown);
             PbCanvas.MouseUp += new MouseEventHandler(PbCanvas_MouseUp);
             PbCanvas.MouseMove += new MouseEventHandler(PbCanvas_MouseMove);
+
+            //ショートカット設定
+            TsmiNew.ShortcutKeys = Keys.Control | Keys.N;
+            TsmiOpen.ShortcutKeys = Keys.Control | Keys.O;
+            TsmiSave.ShortcutKeys = Keys.Control | Keys.S;
+            TsmiSaveAs.ShortcutKeys = Keys.Control | Keys.Shift | Keys.S;
+            TsmiPrint.ShortcutKeys = Keys.Control | Keys.P;
+            TsmiFinish.ShortcutKeys = Keys.Control | Keys.F;
         }
 
         /// <summary>
@@ -603,21 +615,39 @@ namespace MKWindowFormApp1
         /// <returns>ポイントの絶対値</returns>
         private int GetLength(int start, int end)
         {
-            return Math.Abs(start - end);
+            if (end == 0) return 0;
+            return Math.Abs(end - start);
         }
+
 
         /// <summary>
         /// 四角形の描画
         /// </summary>
-        /// <param name="start">始まりのポイント</param>
-        /// <param name="end">終わりのポイント</param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         private void DrawSquare(Point start, Point end)
         {
             Pen pen = new Pen(Properties.Settings.Default.PEN_COLOR, Properties.Settings.Default.PEN_BOLD);
             m_canvas = Graphics.FromImage(m_image);
 
+            // 開始位置と終了位置によって描画位置を修正
             // 領域を描画
-            m_canvas.DrawRectangle(pen, start.X, start.Y, GetLength(start.X, end.X), GetLength(start.Y, end.Y));
+            if(start.X < end.X && start.Y > end.Y)
+            {
+                m_canvas.DrawRectangle(pen, start.X, end.Y, GetLength(start.X, end.X), GetLength(start.Y, end.Y));
+            }
+            else if(start.X > end.X && start.Y > end.Y)
+            {
+                m_canvas.DrawRectangle(pen, end.X, end.Y, GetLength(start.X, end.X), GetLength(start.Y, end.Y));
+            }
+            else if(start.X > end.X && start.Y < end.Y)
+            {
+                m_canvas.DrawRectangle(pen, end.X, start.Y, GetLength(start.X, end.X), GetLength(start.Y, end.Y));
+            }
+            else
+            {
+                m_canvas.DrawRectangle(pen, start.X, start.Y, GetLength(start.X, end.X), GetLength(start.Y, end.Y));
+            }
 
             pen.Dispose();
             PbCanvas.Image = m_image;
@@ -647,10 +677,32 @@ namespace MKWindowFormApp1
         {
             Pen pen = new Pen(Properties.Settings.Default.PEN_COLOR, Properties.Settings.Default.PEN_BOLD);
             m_canvas = Graphics.FromImage(m_image);
-            m_canvas.DrawEllipse(pen, Properties.Settings.Default.PREV_POINT.X
-                , Properties.Settings.Default.PREV_POINT.Y
-                , GetLength(Properties.Settings.Default.PREV_POINT.X, args.X)
-                , GetLength(Properties.Settings.Default.PREV_POINT.Y, args.Y));
+
+            Point prevPoint = Properties.Settings.Default.PREV_POINT;
+
+            // 開始位置と終了位置によって描画位置を修正
+            // 領域を描画
+            if (prevPoint.X < args.X && prevPoint.Y > args.Y)
+            {
+                m_canvas.DrawEllipse(pen, prevPoint.X, args.Y,
+                    GetLength(prevPoint.X, args.X), GetLength(prevPoint.Y, args.Y));
+            }
+            else if (prevPoint.X > args.X && prevPoint.Y > args.Y)
+            {
+                m_canvas.DrawEllipse(pen, args.X, args.Y,
+                    GetLength(prevPoint.X, args.X), GetLength(prevPoint.Y, args.Y));
+            }
+            else if (prevPoint.X > args.X && prevPoint.Y < args.Y)
+            {
+                m_canvas.DrawEllipse(pen, args.X, prevPoint.Y,
+                    GetLength(prevPoint.X, args.X), GetLength(prevPoint.Y, args.Y));
+            }
+            else
+            {
+                m_canvas.DrawEllipse(pen, prevPoint.X, prevPoint.Y, 
+                    GetLength(prevPoint.X, args.X), GetLength(prevPoint.Y, args.Y));
+            }
+
             Properties.Settings.Default.PREV_POINT = args.Location;
             pen.Dispose();
             PbCanvas.Image = m_image;

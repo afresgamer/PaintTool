@@ -83,14 +83,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 253);
+            this.ClientSize = new System.Drawing.Size(482, 197);
             this.ControlBox = false;
             this.Controls.Add(this.BtnCircle);
             this.Controls.Add(this.BtnSquare);
             this.Controls.Add(this.BtnStraightLine);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ShapeModeDialog2";
             this.Text = "ShapeModeDialog2";
+            this.Load += new System.EventHandler(this.ShapeModeDialog2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

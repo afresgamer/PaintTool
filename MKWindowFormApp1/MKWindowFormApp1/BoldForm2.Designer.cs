@@ -38,7 +38,7 @@
             // 
             this.TxtBold.AutoSize = true;
             this.TxtBold.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TxtBold.Location = new System.Drawing.Point(33, 43);
+            this.TxtBold.Location = new System.Drawing.Point(24, 43);
             this.TxtBold.Name = "TxtBold";
             this.TxtBold.Size = new System.Drawing.Size(124, 30);
             this.TxtBold.TabIndex = 0;
@@ -51,11 +51,12 @@
             this.TBBold.Name = "TBBold";
             this.TBBold.Size = new System.Drawing.Size(75, 34);
             this.TBBold.TabIndex = 1;
+            this.TBBold.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBBold_KeyDown);
             // 
             // BtnOK
             // 
             this.BtnOK.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BtnOK.Location = new System.Drawing.Point(38, 105);
+            this.BtnOK.Location = new System.Drawing.Point(29, 105);
             this.BtnOK.Name = "BtnOK";
             this.BtnOK.Size = new System.Drawing.Size(75, 42);
             this.BtnOK.TabIndex = 2;
@@ -66,9 +67,9 @@
             // BtnCancel
             // 
             this.BtnCancel.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BtnCancel.Location = new System.Drawing.Point(131, 105);
+            this.BtnCancel.Location = new System.Drawing.Point(121, 105);
             this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(119, 42);
+            this.BtnCancel.Size = new System.Drawing.Size(129, 42);
             this.BtnCancel.TabIndex = 3;
             this.BtnCancel.Text = "キャンセル";
             this.BtnCancel.UseVisualStyleBackColor = true;
@@ -86,6 +87,7 @@
             this.Controls.Add(this.TxtBold);
             this.Name = "BoldForm2";
             this.Text = "BoldForm2";
+            this.Load += new System.EventHandler(this.BoldForm2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

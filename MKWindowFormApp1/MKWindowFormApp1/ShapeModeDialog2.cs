@@ -18,7 +18,24 @@ namespace MKWindowFormApp1
         }
 
         #region "クリックイベントハンドラ"
+        
+        /// <summary>
+        /// 描画モード変更フォームロード時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShapeModeDialog2_Load(object sender, EventArgs e)
+        {
+            //リサイズ出来ないようにする
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+        }
 
+        /// <summary>
+        /// 直線モード変更時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnStraightLine_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.SHAPE_MODE_INDEX = 1;
@@ -26,6 +43,11 @@ namespace MKWindowFormApp1
             this.Close();
         }
 
+        /// <summary>
+        /// 四角形描画モード変更時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSquare_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.SHAPE_MODE_INDEX = 2;
@@ -33,6 +55,11 @@ namespace MKWindowFormApp1
             this.Close();
         }
 
+        /// <summary>
+        /// 円描画モード変更時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCircle_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.SHAPE_MODE_INDEX = 0;
@@ -41,5 +68,6 @@ namespace MKWindowFormApp1
         }
 
         #endregion
+
     }
 }

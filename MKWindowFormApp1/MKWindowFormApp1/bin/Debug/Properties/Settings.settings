@@ -23,5 +23,8 @@
     <Setting Name="APP_NAME" Description="アプリケーションの名前" Type="System.String" Scope="User">
       <Value Profile="(Default)">お絵描きツール</Value>
     </Setting>
+    <Setting Name="ERR_INPUT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">入力内容を確認してください。</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
