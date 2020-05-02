@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MKWindowFormApp1
@@ -68,8 +61,7 @@ namespace MKWindowFormApp1
         {
             if(e.KeyCode == Keys.Enter)
             {
-                int inputResult = 0;
-                if (TBBold.Text != "" && int.TryParse(TBBold.Text, out inputResult))
+                if (TBBold.Text != "" && int.TryParse(TBBold.Text, out int inputResult))
                 {
                     Properties.Settings.Default.PEN_BOLD = inputResult;
                     this.Close();

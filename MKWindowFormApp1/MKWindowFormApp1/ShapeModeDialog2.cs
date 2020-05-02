@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MKWindowFormApp1
@@ -38,7 +31,7 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void BtnStraightLine_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.SHAPE_MODE_INDEX = 1;
+            Properties.Settings.Default.SHAPE_MODE_INDEX = (int)ShapeMode.StraightLine;
             DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -50,7 +43,7 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void BtnSquare_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.SHAPE_MODE_INDEX = 2;
+            Properties.Settings.Default.SHAPE_MODE_INDEX = (int)ShapeMode.Square;
             DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -62,12 +55,23 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void BtnCircle_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.SHAPE_MODE_INDEX = 0;
+            Properties.Settings.Default.SHAPE_MODE_INDEX = (int)ShapeMode.Circle;
+            DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        /// <summary>
+        /// 消しゴムモード変更時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnErase_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.SHAPE_MODE_INDEX = (int)ShapeMode.Erase;
             DialogResult = DialogResult.OK;
             this.Close();
         }
 
         #endregion
-
     }
 }

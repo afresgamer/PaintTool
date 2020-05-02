@@ -345,6 +345,10 @@
             this.TsmiThickness.Text = "太さ変更(&B)";
             this.TsmiThickness.Click += new System.EventHandler(this.TsmiThickness_Click);
             // 
+            // CdCanvasColor
+            // 
+            this.CdCanvasColor.AllowFullOpen = false;
+            // 
             // MainForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);

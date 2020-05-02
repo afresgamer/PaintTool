@@ -146,5 +146,18 @@ namespace MKWindowFormApp1.Properties {
                 this["ERR_INPUT"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\makia\\OneDrive\\ドキュメント\\PaintTool\\MKWindowFormApp1\\MKWindowFormApp1\\Resour" +
+            "ces\\ErasePic.png")]
+        public string ERASE_IMG {
+            get {
+                return ((string)(this["ERASE_IMG"]));
+            }
+            set {
+                this["ERASE_IMG"] = value;
+            }
+        }
     }
 }

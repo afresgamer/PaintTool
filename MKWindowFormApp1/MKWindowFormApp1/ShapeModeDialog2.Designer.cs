@@ -32,6 +32,7 @@
             this.BtnStraightLine = new System.Windows.Forms.Button();
             this.BtnSquare = new System.Windows.Forms.Button();
             this.BtnCircle = new System.Windows.Forms.Button();
+            this.btnErase = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -49,7 +50,7 @@
             // BtnStraightLine
             // 
             this.BtnStraightLine.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BtnStraightLine.Location = new System.Drawing.Point(68, 109);
+            this.BtnStraightLine.Location = new System.Drawing.Point(93, 109);
             this.BtnStraightLine.Name = "BtnStraightLine";
             this.BtnStraightLine.Size = new System.Drawing.Size(100, 50);
             this.BtnStraightLine.TabIndex = 1;
@@ -60,7 +61,7 @@
             // BtnSquare
             // 
             this.BtnSquare.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BtnSquare.Location = new System.Drawing.Point(189, 109);
+            this.BtnSquare.Location = new System.Drawing.Point(270, 182);
             this.BtnSquare.Name = "BtnSquare";
             this.BtnSquare.Size = new System.Drawing.Size(100, 50);
             this.BtnSquare.TabIndex = 2;
@@ -71,7 +72,7 @@
             // BtnCircle
             // 
             this.BtnCircle.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BtnCircle.Location = new System.Drawing.Point(314, 109);
+            this.BtnCircle.Location = new System.Drawing.Point(270, 109);
             this.BtnCircle.Name = "BtnCircle";
             this.BtnCircle.Size = new System.Drawing.Size(100, 50);
             this.BtnCircle.TabIndex = 3;
@@ -79,12 +80,24 @@
             this.BtnCircle.UseVisualStyleBackColor = true;
             this.BtnCircle.Click += new System.EventHandler(this.BtnCircle_Click);
             // 
+            // btnErase
+            // 
+            this.btnErase.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnErase.Location = new System.Drawing.Point(93, 182);
+            this.btnErase.Name = "btnErase";
+            this.btnErase.Size = new System.Drawing.Size(100, 50);
+            this.btnErase.TabIndex = 4;
+            this.btnErase.Text = "消しゴム";
+            this.btnErase.UseVisualStyleBackColor = true;
+            this.btnErase.Click += new System.EventHandler(this.btnErase_Click);
+            // 
             // ShapeModeDialog2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 197);
+            this.ClientSize = new System.Drawing.Size(482, 254);
             this.ControlBox = false;
+            this.Controls.Add(this.btnErase);
             this.Controls.Add(this.BtnCircle);
             this.Controls.Add(this.BtnSquare);
             this.Controls.Add(this.BtnStraightLine);
@@ -105,5 +118,6 @@
         private System.Windows.Forms.Button BtnStraightLine;
         private System.Windows.Forms.Button BtnSquare;
         private System.Windows.Forms.Button BtnCircle;
+        private System.Windows.Forms.Button btnErase;
     }
 }

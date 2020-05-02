@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -55,7 +53,7 @@ namespace MKWindowFormApp1
         private void BtnClearPic_Click(object sender, EventArgs e)
         {
             //画面クリア
-            m_image = new Bitmap(PbCanvas.Width, PbCanvas.Height); ;
+            m_image = new Bitmap(PbCanvas.Width, PbCanvas.Height);
             m_canvas = null;
             PbCanvas.Image = m_image;
         }
@@ -491,8 +489,11 @@ namespace MKWindowFormApp1
             {
                 switch (m_shapeMode)
                 {
-                    case ShapeMode.StraightLine:
+                    case ShapeMode.StraightLine://鉛筆
                         DrawStraightLine(e);
+                        break;
+                    case ShapeMode.Erase://消しゴム
+                        DrawErase(e);
                         break;
                     default:
                         break;
@@ -539,7 +540,7 @@ namespace MKWindowFormApp1
         /// <param name="e"></param>
         private void MainForm2_Resize(object sender, EventArgs e)
         {
-            //描画サイズを再設定 
+            //描画サイズを再設定
             m_image = new Bitmap(PbCanvas.Width, PbCanvas.Height);
         }
 
@@ -650,6 +651,23 @@ namespace MKWindowFormApp1
             }
 
             pen.Dispose();
+            PbCanvas.Image = m_image;
+        }
+
+        /// <summary>
+        /// 消しゴムの描画処理
+        /// </summary>
+        /// <param name="args"></param>
+        private void DrawErase(MouseEventArgs args)
+        {   
+            Color conColor = SystemColors.Control;
+            using(Pen pen = new Pen(conColor, Properties.Settings.Default.PEN_BOLD))
+            {
+                m_canvas = Graphics.FromImage(m_image);
+                m_canvas.DrawLine(pen, Properties.Settings.Default.PREV_POINT.X
+                    , Properties.Settings.Default.PREV_POINT.Y, args.X, args.Y);
+                Properties.Settings.Default.PREV_POINT = args.Location;
+            }
             PbCanvas.Image = m_image;
         }
 

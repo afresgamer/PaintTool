@@ -26,5 +26,8 @@
     <Setting Name="ERR_INPUT" Type="System.String" Scope="User">
       <Value Profile="(Default)">入力内容を確認してください。</Value>
     </Setting>
+    <Setting Name="ERASE_IMG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\makia\OneDrive\ドキュメント\PaintTool\MKWindowFormApp1\MKWindowFormApp1\Resources\ErasePic.png</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
